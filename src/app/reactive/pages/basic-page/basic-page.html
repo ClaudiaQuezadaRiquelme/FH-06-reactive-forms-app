@@ -20,10 +20,16 @@
                            formControlName="name"
                     >
 
+                    @if (myForm.controls['name'].errors?.['required']) {
                     <span class="form-text text-danger">
-                        <!-- Debe de ser de 3 letras -->
-                        error message
+                        Este campo es requerido
                     </span>
+                    }
+                    @if (myForm.controls['name'].errors?.['minlength']) {
+                    <span class="form-text text-danger">
+                        Este campo requiere al menos {{myForm.controls['name'].errors?.['minlength'].requiredLength}} caracteres
+                    </span>
+                    }
                 </div>
             </div>
 
