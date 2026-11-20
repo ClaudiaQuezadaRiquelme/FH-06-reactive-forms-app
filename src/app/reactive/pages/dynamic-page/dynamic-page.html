@@ -30,6 +30,8 @@
             <div class="input-group">
                 <input class="form-control"
                        placeholder="Agregar favorito"
+                       [formControl]="newFavoriteGame"
+                       (keydown.enter)="onAddToFavorites()"
                 />
 
                 <button class="btn btn-outline-primary"

@@ -28,7 +28,16 @@ export class DynamicPage {
     ),
   });
 
+  newFavoriteGame = this.fb.control(['', Validators.required]);
+
   get favoriteGames() {
     return this.myForm.get('favoriteGames') as FormArray;
+  }
+
+  onAddToFavorites() {
+    if (this.newFavoriteGame.invalid) return;
+    const newGame = this.newFavoriteGame.value;
+    this.favoriteGames.push(this.fb.control([newGame, Validators.required]));
+    this.newFavoriteGame.reset();
   }
 }
