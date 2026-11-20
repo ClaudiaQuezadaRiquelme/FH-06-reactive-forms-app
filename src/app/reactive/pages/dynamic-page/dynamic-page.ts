@@ -21,14 +21,14 @@ export class DynamicPage {
     name: ['', [Validators.required, Validators.minLength(3)]],
     favoriteGames: this.fb.array(
       [
-        ['', Validators.required],
-        ['', Validators.required],
+        // ['', Validators.required],
+        // ['', Validators.required],
       ],
       Validators.minLength(2)
     ),
   });
 
-  newFavoriteGame = this.fb.control(['', Validators.required]);
+  newFavoriteGame = this.fb.control('', Validators.required);
 
   get favoriteGames() {
     return this.myForm.get('favoriteGames') as FormArray;
@@ -37,11 +37,15 @@ export class DynamicPage {
   onAddToFavorites() {
     if (this.newFavoriteGame.invalid) return;
     const newGame = this.newFavoriteGame.value;
-    this.favoriteGames.push(this.fb.control([newGame, Validators.required]));
+    this.favoriteGames.push(this.fb.control(newGame, Validators.required));
     this.newFavoriteGame.reset();
   }
 
   onDeleteFavorite(index:number) {
     this.favoriteGames.removeAt(index);
+  }
+
+  onSubmit() {
+    this.myForm.markAllAsTouched();
   }
 }
