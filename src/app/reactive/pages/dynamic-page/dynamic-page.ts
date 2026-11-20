@@ -40,4 +40,8 @@ export class DynamicPage {
     this.favoriteGames.push(this.fb.control([newGame, Validators.required]));
     this.newFavoriteGame.reset();
   }
+
+  onDeleteFavorite(index:number) {
+    this.favoriteGames.removeAt(index);
+  }
 }
